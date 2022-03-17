@@ -13,10 +13,10 @@ namespace Contract.Repository {
         public void InitDataContext()
         {
             const string connection = "";
+            DomainRegister.Instance
+            .Register<ContractDetail>("Contract")
+            .Register<Template>("Template");
             _dataContext = new DataContext(connection);
-            _dataContext.RegisterModels = new List<Action<ModelBuilder>>();
-            _dataContext.RegisterModels.Add(mc => mc.Entity<ContractDetail>().ToTable("Contract"));
-            _dataContext.RegisterModels.Add(mc => mc.Entity<Template>().ToTable("Template"));
         }
    }
 }

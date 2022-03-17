@@ -9,8 +9,8 @@ namespace Contract.Model {
     {
         [Key]
         public int id {get;set;}
-        public ContractDetail()
-        {
-        }
+        public ContractDetail(){}
+
+        public string CustomerCode {get;set;}
     }
 }
