@@ -21,11 +21,11 @@ namespace Entities {
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            if (!DomainRegister.Instance.IsRegistered)
+            if (!DomainRegister.Instance.IsModelCreated)
             {
                 foreach (var registermodel in DomainRegister.Instance.RegisterModels)
                     registermodel.Invoke(modelBuilder);
-                DomainRegister.Instance.IsRegistered = true;
+                DomainRegister.Instance.IsModelCreated = true;
             }
         }
 

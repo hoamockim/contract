@@ -12,7 +12,8 @@ builder.Services.AddSwaggerGen();
 
 DomainRegister.Instance
     .Register<ContractDetail>("Contract")
-    .Register<Template>("Template");
+    .Register<Template>("Template")
+    .Build();
 
 string connection = "";
 builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(connection));

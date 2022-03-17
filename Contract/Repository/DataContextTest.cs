@@ -15,7 +15,7 @@ namespace Contract.Repository {
             const string connection = "";
             DomainRegister.Instance
             .Register<ContractDetail>("Contract")
-            .Register<Template>("Template");
+            .Register<Template>("Template").Build();
             _dataContext = new DataContext(connection);
         }
    }
