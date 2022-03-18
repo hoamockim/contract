@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 
 namespace Entities {
-    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : Entities.Entity
+    public class GenericRepository<TEntity> : IRepository<TEntity>, IRepositoryAsync<TEntity> where TEntity : Entities.Entity
     {
         private readonly DataContext _dataContext;
         public GenericRepository(DataContext dataContext)
@@ -12,6 +12,11 @@ namespace Entities {
         public int Add(TEntity entity)
         {
             return  _dataContext.Insert(entity);
+        }
+
+        public Task<int> AddAsync(TEntity entity)
+        {
+            return Task.Run(() => Add(entity));
         }
 
         public int AddRange(IEnumerable<TEntity> entities)
@@ -41,12 +46,12 @@ namespace Entities {
 
         public int Update(TEntity entity)
         {
-             return _dataContext.Update(entity);
+            return _dataContext.Update(entity);
         }
 
         public int UpdateRange(IEnumerable<TEntity> entities)
         {
-           throw new NotImplementedException();
+            return _dataContext.UpdateRange(entities);
         }
     }
 }

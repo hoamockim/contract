@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Entities { 
     public sealed class DomainRegister {
         internal List<Action<ModelBuilder>> RegisterModels { get; set; }
-        internal  bool IsModelCreated {get; set;}
+        internal bool IsModelCreated {get; set;}
         bool isRegister {get;set;}
         private DomainRegister(){
             RegisterModels = new List<Action<ModelBuilder>>();

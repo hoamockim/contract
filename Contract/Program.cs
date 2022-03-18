@@ -1,3 +1,4 @@
+using Contract;
 using Contract.Model;
 using Entities;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,11 @@ DomainRegister.Instance
 
 string connection = "";
 builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(connection));
+builder.Services.AddDataContext<DataContext>(options => options.UseNpgsql(connection));
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = "localhost:6379";
+});
 
 var app = builder.Build();
 

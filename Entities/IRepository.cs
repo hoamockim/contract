@@ -13,4 +13,9 @@ namespace Entities {
         int Update(TEntity entity);
         int UpdateRange(IEnumerable<TEntity> entities);
     }
+
+    public interface IRepositoryAsync<TEntity> where TEntity : Entity
+    {
+        Task<int> AddAsync(TEntity entity);
+    }
 }
