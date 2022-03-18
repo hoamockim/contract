@@ -9,10 +9,10 @@ namespace Contract.Repository {
         public ContractRepository(DataContext dataContext, ILogger<ContractRepository> logger) : base(dataContext)
         {
             this._logger = logger;
-            var _contractDetail = new ContractDetail();
-            _contractDetail.CreatedAt = DateTime.Now;
-            dataContext.Attach(_contractDetail).PropertyToPatch(ct=> ct.CreatedAt).Patch();
+        }
 
+        public void PatchContractInfo(ContractDetail contractDetail) {
+            this.Patch(contractDetail, "Description", "Title");
         }
     }
 }

@@ -11,6 +11,9 @@ namespace Contract.Model {
         public int id {get;set;}
         public ContractDetail(){}
 
+        public string Description {get;set;}
+        public string Title {get;set;}
+
         public string CustomerCode {get;set;}
     }
 }

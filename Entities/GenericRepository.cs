@@ -9,6 +9,13 @@ namespace Entities {
             _dataContext = dataContext;
         }
 
+        public DataContext DataContext {
+            get
+            {
+                return _dataContext;
+            }
+        }
+
         public int Add(TEntity entity)
         {
             return  _dataContext.Insert(entity);
@@ -52,6 +59,14 @@ namespace Entities {
         public int UpdateRange(IEnumerable<TEntity> entities)
         {
             return _dataContext.UpdateRange(entities);
+        }
+
+        public int Patch(TEntity entity, params string[] expressions){
+            var entry = _dataContext.Attach(entity);
+            foreach(var expression in expressions){
+                entry.Property(expression).IsModified = true;
+            }
+            return _dataContext.SaveChanges();
         }
     }
 }
